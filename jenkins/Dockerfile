@@ -1,0 +1,1 @@
+FROM fabric8io/jenkins-docker
