@@ -3,3 +3,7 @@ docker run -it -p 8080:8080 --name jenkins  -v $(pwd)/jobs:/var/jenkins_home/job
 
 # remove all containers
 docker rm $(docker ps -a -q)
+
+
+file system checkout jenkins docker
+/var/nicktemp
