@@ -1,3 +1,3 @@
-FROM fabric8/jenkins-docker
-COPY plugins.txt /usr/share/jenkins/naren-plugins.txt
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/naren-plugins.txt
+FROM jenkins/jenkins:lts
+COPY plugins.txt /usr/share/jenkins/ref/naren-plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/naren-plugins.txt
