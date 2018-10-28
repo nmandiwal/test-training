@@ -3,9 +3,7 @@
 **/lastStable
 **/lastSuccessful
 **/nextBUildNumber
-**/jenkins/**/workspace
-**/jenkins/**/workspace@script
-**/jenkins/**/workspace@tmp
+**/jenkins/**/workspace*
 **/fsscm_allow_delete_list.dat
 
 ### Eclipse ###

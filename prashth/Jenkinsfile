@@ -3,7 +3,14 @@ pipeline {
     	buildDiscarder(logRotator(artifactDaysToKeepStr: '30', artifactNumToKeepStr: '5', daysToKeepStr: '30', numToKeepStr: '5'))
     }
 
-    agent any
+    //agent { docker 'maven:3-alpine' }
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args  '-v $HOME/.m2:/root/.m2'
+        }
+    }
+    
     stages {
         stage('Prepare') {
             steps{ 
@@ -11,13 +18,45 @@ pipeline {
                     sh '''
     					hostname
     			 		echo "Preparing build param"
-    			 		echo "${JOB_NAME}"
+    			 		mvn --version
     			 		env
-                        cd prashth
-    			 		mvn clean test 
-    				'''
+                    '''
                 
 			}
+        }
+
+        stage('test') {
+            steps{ 
+                
+                    sh '''
+                        cd prashth
+                        mvn clean test 
+                    '''
+                
+            }
+        }
+
+        stage('package') {
+            steps{ 
+                
+                    sh '''
+                        cd prashth
+                        mvn package -DskipTests=true
+                         
+                    '''
+                
+            }
+        }
+        
+        stage('deploy') {
+            steps{ 
+                
+                    sh '''
+                        cd prashth/target
+                        #java -jar rest-0.1.0.jar 
+                    '''
+                
+            }
         }
     }
 }

@@ -28,6 +28,8 @@ spec:
               mountPath: /var/jenkins_home/jobs
             - name: fs-source
               mountPath: /var/nicktemp
+            - name: docker-sock
+              mountPath: /var/run/docker.sock
       volumes:
         - name: jenkins-home
           emptyDir: {}
@@ -39,6 +41,10 @@ spec:
           hostPath: 
             path: /Users/narmandi/test-training
             type: Directory
+        - name: docker-sock
+          hostPath: 
+            path: /var/run/docker.sock
+            
 ---
 # service
 apiVersion: v1
