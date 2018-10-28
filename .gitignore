@@ -5,6 +5,7 @@
 **/nextBUildNumber
 **/jenkins/**/workspace
 **/jenkins/**/workspace@script
+**/jenkins/**/workspace@tmp
 **/fsscm_allow_delete_list.dat
 
 ### Eclipse ###
