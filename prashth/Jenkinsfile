@@ -13,7 +13,8 @@ pipeline {
     			 		echo "Preparing build param"
     			 		echo "${JOB_NAME}"
     			 		env
-    			 		mvn clean test
+                        cd prashth
+    			 		mvn clean test 
     				'''
                 
 			}

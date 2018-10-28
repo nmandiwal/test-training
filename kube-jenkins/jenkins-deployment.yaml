@@ -37,7 +37,7 @@ spec:
             type: Directory
         - name: fs-source
           hostPath: 
-            path: /Users/narmandi/test-training/prashth
+            path: /Users/narmandi/test-training
             type: Directory
 ---
 # service

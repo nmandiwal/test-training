@@ -27,8 +27,19 @@
     <scm class="hudson.plugins.filesystem_scm.FSSCM" plugin="filesystem_scm@2.1">
       <path>/var/nicktemp</path>
       <clearWorkspace>true</clearWorkspace>
+      <filterSettings>
+        <includeFilter>false</includeFilter>
+        <selectors>
+          <hudson.plugins.filesystem__scm.FilterSelector>
+            <wildcard>**/target/**</wildcard>
+          </hudson.plugins.filesystem__scm.FilterSelector>
+          <hudson.plugins.filesystem__scm.FilterSelector>
+            <wildcard>**/*jenkins/**</wildcard>
+          </hudson.plugins.filesystem__scm.FilterSelector>
+        </selectors>
+      </filterSettings>
     </scm>
-    <scriptPath>Jenkinsfile</scriptPath>
+    <scriptPath>./prashth/Jenkinsfile</scriptPath>
     <lightweight>true</lightweight>
   </definition>
   <triggers/>

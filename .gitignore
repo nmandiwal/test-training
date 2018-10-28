@@ -1,7 +1,11 @@
 .DS_Store
-./jenkins/jobs/new-pipe/builds/*
-# Created by http://www.gitignore.io
-# Using: gi eclipse,intellij,osx,windows
+**/builds
+**/lastStable
+**/lastSuccessful
+**/nextBUildNumber
+**/jenkins/**/workspace
+**/jenkins/**/workspace@script
+**/fsscm_allow_delete_list.dat
 
 ### Eclipse ###
 *.pydevproject
