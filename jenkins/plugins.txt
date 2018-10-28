@@ -2,3 +2,4 @@ filesystem_scm:latest
 workflow-aggregator
 jdk-tool
 kubernetes
+maven-plugin:latest
