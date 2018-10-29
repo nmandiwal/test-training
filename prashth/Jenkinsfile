@@ -4,58 +4,77 @@ pipeline {
     }
 
     //agent { docker 'maven:3-alpine' }
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args  '-v $HOME/.m2:/root/.m2'
-        }
-    }
+    //agent {
+    //    docker {
+     //       image 'maven:3-alpine'
+    //        args  '-v $HOME/.m2:/root/.m2'
+    //    }
+    //}
+    agent any
     
     stages {
+        
+
         stage('Prepare') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args  '-v $HOME/.m2:/root/.m2'
+                }
+            }
             steps{ 
-            	
-                    sh '''
-    					hostname
-    			 		echo "Preparing build param"
-    			 		mvn --version
-    			 		env
-                    '''
-                
-			}
+        	    sh '''
+					hostname
+			 		echo "Preparing build param"
+			 		mvn --version
+			 		env
+                '''
+            }
         }
 
         stage('test') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args  '-v $HOME/.m2:/root/.m2'
+                }
+            }
             steps{ 
-                
-                    sh '''
-                        cd prashth
-                        mvn clean test 
-                    '''
+                sh '''
+                    cd prashth
+                    mvn clean test 
+                '''
                 
             }
         }
 
         stage('package') {
+            agent {
+                docker {
+                    image 'maven:3-alpine'
+                    args  '-v $HOME/.m2:/root/.m2'
+                    reuseNode true
+                }
+            }
             steps{ 
-                
                     sh '''
                         cd prashth
                         mvn package -DskipTests=true
-                         
+                        
                     '''
-                
+                    stash includes: 'prashth/target/rest-0.1.0.jar', name: 'naren-rest' 
             }
         }
-        
+
         stage('deploy') {
+            agent any
             steps{ 
-                
-                    sh '''
-                        cd prashth/target
-                        #java -jar rest-0.1.0.jar 
-                    '''
-                
+                unstash 'naren-rest'
+                sh '''
+                    cd prashth
+                    docker build -t prashth . 
+                    # steps to run the above docker image
+                '''
             }
         }
     }

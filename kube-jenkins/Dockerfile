@@ -13,6 +13,12 @@ RUN /usr/local/bin/install-plugins.sh openJDK-native-plugin
 RUN /usr/local/bin/install-plugins.sh workflow-aggregator
 RUN /usr/local/bin/install-plugins.sh pipeline-github
 
+RUN /usr/local/bin/install-plugins.sh docker-commons
+RUN /usr/local/bin/install-plugins.sh docker-workflow
+RUN /usr/local/bin/install-plugins.sh docker-traceability
+RUN /usr/local/bin/install-plugins.sh credentials-binding
+
+
 # Artifacts
 RUN /usr/local/bin/install-plugins.sh htmlpublisher
 
