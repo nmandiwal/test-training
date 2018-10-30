@@ -24,14 +24,17 @@ pipeline {
       imagePullPolicy: IfNotPresent
       command:
       - cat
-      resources:
-        limits:
-          memory: 1500Mi
-        requests:
-          cpu: 100m
-          memory: 1500Mi
       tty: true
-           
+      volumeMounts:
+        - name: m2-repo
+              mountPath: /root/.m2
+
+    volumes:
+        - name: m2-repo
+          hostPath: 
+            path: $HOME/.m2
+            type: Directory
+             
   """
               }
           }
