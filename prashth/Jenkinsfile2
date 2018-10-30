@@ -109,7 +109,8 @@ pipeline {
                     app.inside{
                         sh 'echo "Tests passed"'
                         sh 'pwd'
-                        sh 'java -jar ./prasth/target/rest-0.1.0.jar'
+                        sh 'ls -l'
+                        sh 'java -jar app.jar'
                         sh 'sleep 1000s'
                     }
                 }
