@@ -32,7 +32,7 @@ pipeline {
     volumes:
         - name: m2-repo
           hostPath: 
-            path: $HOME/.m2
+            path: /Users/narmandi/.m2
             type: Directory
              
   """
