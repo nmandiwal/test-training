@@ -20,7 +20,7 @@ pipeline {
       imagePullPolicy: IfNotPresent
       ttyEnabled: true
     - name: maven-nick
-      image: maven
+      image: maven:3.5.2-jdk-8
       imagePullPolicy: IfNotPresent
       command:
       - cat
