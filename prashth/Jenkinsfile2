@@ -1,0 +1,87 @@
+pipeline {
+    options {
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '30', artifactNumToKeepStr: '5', daysToKeepStr: '30', numToKeepStr: '5'))
+    }
+
+    agent {
+      kubernetes {
+          label "bldpod.${env.BUILD_NUMBER}"
+            defaultContainer 'jnlp'
+                  yaml """
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    labels:
+      jenkins: jenkins-pipeline
+  spec:
+    containers:
+    - name: jnlp
+      image: jenkinsci/jnlp-slave
+      imagePullPolicy: IfNotPresent
+      ttyEnabled: true
+    - name: maven-nick
+      image: maven
+      imagePullPolicy: IfNotPresent
+      command:
+      - cat
+      tty: true
+           
+  """
+              }
+          }
+    
+    stages {
+        
+        stage('Prepare') {
+            steps{ 
+                container('maven-nick'){
+                sh '''
+                    hostname
+                    echo "Preparing build param"
+                    mvn --version
+                    env
+                '''
+            }
+            }
+        }
+
+        stage('test') {
+            
+            steps{ 
+                container('maven'){
+                sh '''
+                    cd prashth
+                    mvn clean test 
+                '''
+                
+            }
+            }
+        }
+
+        stage('package') {
+            
+            steps{ 
+                container('maven'){
+                    sh '''
+                        cd prashth
+                        mvn package -DskipTests=true
+                        
+                    '''
+                    stash includes: 'prashth/target/rest-0.1.0.jar', name: 'naren-rest' 
+                }
+            }
+        }
+
+        stage('deploy') {
+            agent any
+            steps{ 
+                unstash 'naren-rest'
+                sh '''
+                    cd prashth
+                    docker build -t prashth . 
+                    # steps to run the above docker image
+                '''
+            }
+        }
+    }
+}
