@@ -89,7 +89,7 @@ pipeline {
             }
         }
 
-        def app
+        
         stage('deploy') {
             agent any
             steps{ 
@@ -101,7 +101,7 @@ pipeline {
                     # steps to run the above docker image
                 '''
                 script {
-                    app = docker.build("prasth")
+                    def app = docker.build("prasth")
                     app.inside{
                         sh 'echo "Tests passed"'
                     }
