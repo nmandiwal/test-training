@@ -3,18 +3,10 @@ pipeline {
     	buildDiscarder(logRotator(artifactDaysToKeepStr: '30', artifactNumToKeepStr: '5', daysToKeepStr: '30', numToKeepStr: '5'))
     }
 
-    //agent { docker 'maven:3-alpine' }
-    //agent {
-    //    docker {
-     //       image 'maven:3-alpine'
-    //        args  '-v $HOME/.m2:/root/.m2'
-    //    }
-    //}
     agent any
     
     stages {
         
-
         stage('Prepare') {
             agent {
                 docker {

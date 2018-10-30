@@ -2,6 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: jenkins
+  
 spec:
   replicas: 1
   template:
@@ -51,10 +52,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jenkins
+  
 spec:
   type: LoadBalancer
   ports:
     - port: 8080
       targetPort: 8080
+      name: http-port
+    - port: 50000
+      targetPort: 50000
+      name: jnlp-port
   selector:
     app: jenkins
