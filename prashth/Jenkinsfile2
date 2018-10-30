@@ -27,7 +27,7 @@ pipeline {
       tty: true
       volumeMounts:
         - name: m2-repo
-              mountPath: /root/.m2
+          mountPath: /root/.m2
 
     volumes:
         - name: m2-repo
