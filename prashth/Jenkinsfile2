@@ -96,17 +96,16 @@ pipeline {
                 unstash 'naren-rest'
                 sh '''
                     cd prashth
-                    docker build -t prashth .
+                    #docker build -t prashth .
                     #docker run -p 8083:8083 prasth 
                     # steps to run the above docker image
                 '''
-                //script {
-                //    def app = docker.build("prasth")
-                //    app.inside{
-                //        sh 'echo "Tests passed"'
-                //    }
-                    
-                //}
+                script {
+                    def app = docker.build("prasth","./prasth")
+                    app.inside{
+                        sh 'echo "Tests passed"'
+                    }
+                }
                 
             }
         }
