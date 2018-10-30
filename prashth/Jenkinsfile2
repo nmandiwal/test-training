@@ -98,6 +98,7 @@ pipeline {
                 sh '''
                     ls -lart
                     ls -lart ./prashth
+                    
                     #cd prashth
                     #docker build -t prashth .
                     #docker run -p 8083:8083 prashth 
@@ -107,7 +108,9 @@ pipeline {
                     def app = docker.build("prashth","./prashth")
                     app.inside{
                         sh 'echo "Tests passed"'
-                        sh 'sleep 500s'
+                        ah 'pwd'
+                        sh 'java -jar rest-0.1.0.jar'
+                        sh 'sleep 1000s'
                     }
                 }
                 
