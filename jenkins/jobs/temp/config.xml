@@ -1,0 +1,43 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.25">
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@1.3.2"/>
+  </actions>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.59">
+    <script>pipeline {
+  agent {
+    kubernetes {
+      label &apos;declarative-pod&apos;
+      containerTemplate {
+        name &apos;maven&apos;
+        image &apos;maven:3.3.9-jdk-8-alpine&apos;
+        ttyEnabled true
+        command &apos;cat&apos;
+      }
+    }
+  }
+  environment {
+    CONTAINER_ENV_VAR = &apos;container-env-var-value&apos;
+  }
+  stages {
+    stage(&apos;Run maven&apos;) {
+      steps {
+        sh &apos;set&apos;
+        sh &apos;test -f /usr/bin/mvn&apos; // checking backwards compatibility
+        sh &quot;echo OUTSIDE_CONTAINER_ENV_VAR = ${CONTAINER_ENV_VAR}&quot;
+        container(&apos;maven&apos;) {
+          sh &apos;echo INSIDE_CONTAINER_ENV_VAR = ${CONTAINER_ENV_VAR}&apos;
+          sh &apos;mvn -version&apos;
+        }
+      }
+    }
+  }
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
