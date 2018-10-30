@@ -108,7 +108,7 @@ pipeline {
                     def app = docker.build("prashth","./prashth")
                     app.inside{
                         sh 'echo "Tests passed"'
-                        ah 'pwd'
+                        sh 'pwd'
                         sh 'java -jar rest-0.1.0.jar'
                         sh 'sleep 1000s'
                     }
