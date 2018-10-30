@@ -48,7 +48,7 @@ pipeline {
         stage('test') {
             
             steps{ 
-                container('maven'){
+                container('maven-nick'){
                 sh '''
                     cd prashth
                     mvn clean test 
@@ -61,7 +61,7 @@ pipeline {
         stage('package') {
             
             steps{ 
-                container('maven'){
+                container('maven-nick'){
                     sh '''
                         cd prashth
                         mvn package -DskipTests=true
