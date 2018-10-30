@@ -19,6 +19,14 @@ pipeline {
       image: jenkinsci/jnlp-slave
       imagePullPolicy: IfNotPresent
       ttyEnabled: true
+    
+    - name: kubectl
+      image: lachlanevenson/k8s-kubectl:v1.8.8
+      imagePullPolicy: IfNotPresent
+      command:
+      - cat
+      tty: true
+
     - name: maven-nick
       image: maven:3.5.2-jdk-8
       imagePullPolicy: IfNotPresent
@@ -87,10 +95,13 @@ pipeline {
                 unstash 'naren-rest'
                 sh '''
                     cd prashth
-                    docker build -t prashth . 
+                    docker build -t prashth .
+                    docker run -p 8083:8083 prasth 
                     # steps to run the above docker image
                 '''
             }
         }
+
+
     }
 }
