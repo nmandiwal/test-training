@@ -25,11 +25,11 @@ pipeline {
       command:
       - cat
       resources:
-      limits:
-        memory: 1500Mi
-      requests:
-        cpu: 100m
-        memory: 1500Mi
+        limits:
+          memory: 1500Mi
+        requests:
+          cpu: 100m
+          memory: 1500Mi
       tty: true
            
   """
