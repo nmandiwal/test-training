@@ -92,8 +92,9 @@ pipeline {
 
         
         stage('deploy') {
-            agent docker
+            
             steps{ 
+              container('docker'){
                 unstash 'naren-rest'
                 sh '''
                     ls -lart
@@ -113,8 +114,8 @@ pipeline {
                   //      sh 'java -jar app.jar'
                   //      sh 'sleep 1000s'
                   //  }
-                }
-                
+                //}
+              }  
             }
         }
 
