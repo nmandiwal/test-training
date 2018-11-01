@@ -112,7 +112,7 @@ pipeline {
                   //      sh 'ls -l'
                   //      sh 'java -jar app.jar'
                   //      sh 'sleep 1000s'
-                    }
+                  //  }
                 }
                 
             }
