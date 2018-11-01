@@ -92,26 +92,26 @@ pipeline {
 
         
         stage('deploy') {
-            agent any
+            agent docker
             steps{ 
                 unstash 'naren-rest'
                 sh '''
                     ls -lart
                     ls -lart ./prashth
                     
-                    #cd prashth
-                    #docker build -t prashth .
-                    #docker run -p 8083:8083 prashth 
+                    cd prashth
+                    docker build -t prashth .
+                    docker run -p 8083:8083 prashth 
                     # steps to run the above docker image
                 '''
-                script {
-                    def app = docker.build("prashth","./prashth")
-                    app.inside{
-                        sh 'echo "Tests passed"'
-                        sh 'pwd'
-                        sh 'ls -l'
-                        sh 'java -jar app.jar'
-                        sh 'sleep 1000s'
+                //script {
+                //    def app = docker.build("prashth","./prashth")
+                 //   app.inside{
+                 //       sh 'echo "Tests passed"'
+                  //      sh 'pwd'
+                  //      sh 'ls -l'
+                  //      sh 'java -jar app.jar'
+                  //      sh 'sleep 1000s'
                     }
                 }
                 
