@@ -26,6 +26,12 @@ pipeline {
       command:
       - cat
       tty: true
+    - name: docker
+      image: docker
+      imagePullPolicy: IfNotPresent
+      command:
+      - cat
+      tty: true
 
     - name: maven-nick
       image: maven:3.5.2-jdk-8
