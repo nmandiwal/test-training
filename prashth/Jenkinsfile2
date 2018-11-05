@@ -100,7 +100,7 @@ pipeline {
         stage('deploy') {
             
             steps{ 
-              container('docker'){
+              container('jnlp'){
                 unstash 'naren-rest'
                 sh '''
                     ls -lart
