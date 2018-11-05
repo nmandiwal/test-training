@@ -55,7 +55,7 @@ pipeline {
     
     stages {
         
-        stage('Prepare') {
+        /**stage('Prepare') {
             steps{ 
                 container('maven-nick'){
                 sh '''
@@ -66,7 +66,7 @@ pipeline {
                 '''
             }
             }
-        }
+        }*/
 
         stage('test') {
             
