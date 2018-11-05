@@ -106,9 +106,9 @@ pipeline {
                     ls -lart
                     ls -lart ./prashth
                     
-                    cd prashth
-                    docker build -t prashth .
-                    docker run -p 8083:8083 prashth 
+                    #cd prashth
+                    #docker build -t prashth .
+                    #docker run -p 8083:8083 prashth 
                     # steps to run the above docker image
                 '''
                 //script {
