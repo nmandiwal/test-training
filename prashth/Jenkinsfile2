@@ -97,10 +97,10 @@ pipeline {
         }
 
         
-        stage('maven-nick') {
+        stage('deploy') {
             
             steps{ 
-              container('docker'){
+              container('maven-nick'){
                 //unstash 'naren-rest'
                 sh '''
                     ls -lart
