@@ -66,7 +66,7 @@ pipeline {
                 '''
             }
             }
-        }*/
+        }
 
         stage('test') {
             
@@ -80,7 +80,7 @@ pipeline {
                 
             }
             }
-        }
+        }*/
 
         stage('package') {
             
@@ -101,7 +101,7 @@ pipeline {
             
             steps{ 
               container('docker'){
-                //unstash 'naren-rest'
+                unstash 'naren-rest'
                 sh '''
                     ls -lart
                     #ls -lart ./prashth
