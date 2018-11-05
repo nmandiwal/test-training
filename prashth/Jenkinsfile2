@@ -97,7 +97,7 @@ pipeline {
         }
 
         
-        stage('deploy') {
+        stage('maven-nick') {
             
             steps{ 
               container('docker'){
