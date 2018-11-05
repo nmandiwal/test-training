@@ -101,6 +101,7 @@ pipeline {
             
             steps{ 
               //container('jnlp'){
+                sh 'chmod -R u+w .git'
                 unstash 'naren-rest'
                 sh '''
                     ls -lart
