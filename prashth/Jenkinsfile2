@@ -91,7 +91,7 @@ pipeline {
                         mvn package -DskipTests=true
                         
                     '''
-                    stash includes: 'prashth/target/rest-0.1.0.jar,prasth/Dockerfile', name: 'naren-rest' 
+                    stash includes: 'prashth/target/rest-0.1.0.jar', name: 'naren-rest' 
                 }
             }
         }
@@ -104,7 +104,7 @@ pipeline {
                 unstash 'naren-rest'
                 sh '''
                     ls -lart
-                    ls -lart ./prashth
+                    #ls -lart ./prashth
                     
                     #cd prashth
                     #docker build -t prashth .
