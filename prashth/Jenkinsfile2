@@ -100,7 +100,7 @@ pipeline {
         stage('deploy') {
             
             steps{ 
-              container('jnlp'){
+              //container('jnlp'){
                 unstash 'naren-rest'
                 sh '''
                     ls -lart
@@ -121,7 +121,7 @@ pipeline {
                   //      sh 'sleep 1000s'
                   //  }
                 //}
-              }  
+              //}  
             }
         }
 
