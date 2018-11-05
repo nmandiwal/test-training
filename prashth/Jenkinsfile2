@@ -100,8 +100,8 @@ pipeline {
         stage('deploy') {
             
             steps{ 
-              container('maven-nick'){
-                //unstash 'naren-rest'
+              container('docker'){
+                //#unstash 'naren-rest'
                 sh '''
                     ls -lart
                     #ls -lart ./prashth
